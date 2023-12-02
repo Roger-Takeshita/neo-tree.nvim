@@ -1144,10 +1144,10 @@ render_tree = function(state)
     end
     state._in_pre_render = false
     state.window.last_user_width = vim.api.nvim_win_get_width(state.winid)
-    if should_auto_expand and state.longest_node > state.window.last_user_width then
+    if should_auto_expand and state.longest_node + 5 > state.window.last_user_width then
       log.trace(string.format("auto_expand_width: on. Expanding width to %s.", state.longest_node))
-      vim.api.nvim_win_set_width(state.winid, state.longest_node)
-      state.win_width = state.longest_node
+      vim.api.nvim_win_set_width(state.winid, state.longest_node + 5)
+      state.win_width = state.longest_node + 5
     end
   end
   if M.tree_is_visible(state) then
